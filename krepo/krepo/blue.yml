@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: depblue
+
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: oldapp
+  template:
+    metadata:
+      labels:
+        app: oldapp
+    spec:
+      containers:
+      - name: cont1
+        image: nginx:1.20
+

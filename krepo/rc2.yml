@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: rs2
+
+spec:
+  replicas: 1
+  selector:
+    matchExpressions:
+      - key: app
+        operator: In
+        values:
+          - webservers
+          - dbservers
+      - key: env
+        operator: In
+        values:
+          - prod
+          - dev
+
+  template:
+    metadata:
+      labels:
+        app: webservers
+        env: prod
+    spec:
+      containers:
+      - name: cont2
+        image: httpd
